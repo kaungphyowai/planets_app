@@ -151,7 +151,9 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ],
                           ),
-                          Image.asset(planets[index].iconImage)
+                          Hero(
+                              tag: planets[index].position,
+                              child: Image.asset(planets[index].iconImage))
                         ],
                       ),
                     );

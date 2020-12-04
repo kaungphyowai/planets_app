@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 
 import 'constants.dart';
+import 'data.dart';
 
 class DetailPage extends StatelessWidget {
-  final planetInfo;
+  final PlanetInfo planetInfo;
 
   const DetailPage({Key key, this.planetInfo});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Stack(
-            children: [
-              Column(
+        bottom: false,
+        child: Stack(
+          children: [
+            SingleChildScrollView(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
@@ -107,9 +109,34 @@ class DetailPage extends StatelessWidget {
                     ),
                   ),
                 ],
-              )
-            ],
-          ),
+              ),
+            ),
+            Positioned(
+              right: -64,
+              child: Hero(
+                  tag: planetInfo.position,
+                  child: Image.asset(planetInfo.iconImage)),
+            ),
+            Positioned(
+              top: 60,
+              left: 32,
+              child: Text(
+                planetInfo.position.toString(),
+                style: TextStyle(
+                  fontFamily: 'Avenir',
+                  fontSize: 247,
+                  color: primaryTextColor.withOpacity(0.08),
+                  fontWeight: FontWeight.w900,
+                ),
+                textAlign: TextAlign.left,
+              ),
+            ),
+            IconButton(
+                icon: Icon(Icons.arrow_back),
+                onPressed: () {
+                  Navigator.pop(context);
+                })
+          ],
         ),
       ),
     );
